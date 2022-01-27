@@ -4,11 +4,16 @@ import { incremented, decremented, reseted, amountAdded } from '../features/coun
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useState } from 'react'
+import Image from 'next/image'
+
+import { useFetchBreedsQuery } from '../features/dogs/dogs-api-slice'
 
 const Home: NextPage = () => {
   const count = useAppSelector((state) => state.counter.count)
   const dispatch = useAppDispatch()
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(0)
+  const [numDogs, setNumDogs] = useState(10)
+  const { data = [], isFetching } = useFetchBreedsQuery(numDogs)
 
   const increment = () => {
     dispatch(incremented())
@@ -74,6 +79,44 @@ const Home: NextPage = () => {
           </button>
           <input type="number" value={amount} onChange={handleAmountInputChange} />
         </div>
+        <div className={styles.grid}>
+          <p>Dogs to fetch:</p>
+          <select value={numDogs} onChange={(e) => setNumDogs(Number(e.target.value))}>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select> <br/>
+        </div>
+        { !isFetching && 
+          <div className={styles.grid}>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Picture</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((breed) => (
+                  <tr key={breed.id}>
+                    <td>{breed.name}</td>
+                    <td>
+                      <Image
+                        src={breed.image.url}
+                        alt={breed.name}
+                        height={250}
+                        width={300}
+                      />
+                      {/* <img src={breed.image.url} alt={breed.name} height={250}/> */}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        }
       </main>
 
       <footer className={styles.footer}>
