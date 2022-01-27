@@ -21,3 +21,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Docker
 repo: N/A
+
+## Setup Redux
+ref: https://youtu.be/9zySeP5vH9c
+yarn add @reduxjs/toolkit react-redux axios
