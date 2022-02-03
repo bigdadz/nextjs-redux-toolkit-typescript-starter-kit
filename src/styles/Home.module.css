@@ -114,3 +114,7 @@
     flex-direction: column;
   }
 }
+
+.table {
+  border: 1px solid black;
+}
