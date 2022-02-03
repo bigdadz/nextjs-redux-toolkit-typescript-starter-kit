@@ -1,12 +1,17 @@
 ## Getting Started
-First, run the development server:
+- Signup https://www.thedogapi.com/ and get NEXT_PUBLIC_DOGS_API_KEY
+- Create file .env in root project
+```bash
+NEXT_PUBLIC_DOGS_API_KEY=......key.......
+```
 
+- First, run the development server:
 ```bash
 yarn install
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Starter Kit
 - [Next.js 12](https://nextjs.org/)
